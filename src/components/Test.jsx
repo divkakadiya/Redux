@@ -23,14 +23,20 @@ const Test = () => {
         setFdata({ ...fdata, [e.target.name]: e.target.value })
     }
 
-    const postData = () => {
-        dispatch({ type: POST_PRODUCT_PROGRESS, payload: fdata })
 
-        setFdata({
-            userName: '',
-            userEmail: ''
-        })
+    const postData = () => {
+        if (fdata.userName == null || fdata.userEmail == null) {
+            alert('Both userName and userEmail must be provided');
+        } else {
+            dispatch({ type: POST_PRODUCT_PROGRESS, payload: fdata });
+
+            setFdata({
+                userName: '',
+                userEmail: ''
+            });
+        }
     }
+
 
     const edit = (id) => {
         const ed = data.product[id]
@@ -38,7 +44,9 @@ const Test = () => {
         setSignal(true)
     }
 
+
     const updateData = () => {
+
         dispatch({ type: UPDATE_PRODUCT_PROGRESS, payload: fdata })
         setSignal(false)
 
@@ -46,6 +54,7 @@ const Test = () => {
             userName: '',
             userEmail: ''
         })
+
     }
 
     const removeData = (id) => {
@@ -71,9 +80,9 @@ const Test = () => {
                 </div>
             </div>
 
-            <table class="table table-hover">
-                <thead class="mdb-color darken-3">
-                    <tr class="text-white">
+            <table className="table table-hover">
+                <thead className="mdb-color darken-3">
+                    <tr className="text-white">
                         <th>#</th>
                         <th>Name</th>
                         <th>Email</th>
