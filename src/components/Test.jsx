@@ -25,7 +25,7 @@ const Test = () => {
 
 
     const postData = () => {
-        if (fdata.userName == '' || fdata.userEmail == '') {
+        if (!fdata.userName || !fdata.userEmail) {
             alert('Both userName and userEmail must be provided');
         } else {
             dispatch({ type: POST_PRODUCT_PROGRESS, payload: fdata });
